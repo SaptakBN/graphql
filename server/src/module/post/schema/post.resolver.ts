@@ -8,7 +8,7 @@ export class PostResolver {
   constructor(private postService: PostService) {}
 
   @Query(() => PostModel)
-  async author(@Args('id', { type: () => String }) id: Types.ObjectId) {
+  async post(@Args('id', { type: () => String }) id: Types.ObjectId) {
     return this.postService.findOneById(id);
   }
 }

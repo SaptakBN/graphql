@@ -8,7 +8,7 @@ export class CommentResolver {
   constructor(private commentService: CommentService) {}
 
   @Query(() => CommentModel)
-  async author(@Args('id', { type: () => String }) id: Types.ObjectId) {
+  async comment(@Args('id', { type: () => String }) id: Types.ObjectId) {
     return this.commentService.findOneById(id);
   }
 }

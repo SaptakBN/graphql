@@ -17,7 +17,9 @@ type PostModel {
 }
 
 type Query {
-  author(id: String!): CommentModel!
+  comment(id: String!): CommentModel!
+  post(id: String!): PostModel!
+  user(id: String!): UserModel!
 }
 
 type UserModel {

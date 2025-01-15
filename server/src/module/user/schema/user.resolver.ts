@@ -8,7 +8,7 @@ export class UserResolver {
   constructor(private userService: UserService) {}
 
   @Query(() => UserModel)
-  async author(@Args('id', { type: () => String }) id: Types.ObjectId) {
+  async user(@Args('id', { type: () => String }) id: Types.ObjectId) {
     return this.userService.findOneById(id);
   }
 }
