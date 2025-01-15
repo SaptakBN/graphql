@@ -9,6 +9,22 @@ type CommentModel {
   userId: String!
 }
 
+input LoginArg {
+  email: String!
+  password: String!
+}
+
+input RegisterArg {
+  email: String!
+  name: String!
+  password: String!
+}
+
+type Mutation {
+  login(email: LoginArg!): UserModel!
+  register(email: RegisterArg!): UserModel!
+}
+
 type PostModel {
   _id: String!
   content: String!
