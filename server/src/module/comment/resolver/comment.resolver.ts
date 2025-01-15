@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { CommentModel } from './comment.model';
+import { CommentModel } from '../model/comment.model';
 import { CommentService } from '../comment.service';
 import { Types } from 'mongoose';
 

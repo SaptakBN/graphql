@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { UserModel } from './user.model';
+import { UserModel } from '../model/user.model';
 import { UserService } from '../user.service';
 import { Types } from 'mongoose';
 

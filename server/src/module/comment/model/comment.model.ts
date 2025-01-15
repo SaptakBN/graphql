@@ -1,17 +1,17 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { PostInterface } from './post.interface';
+import { CommentInterface } from '../schema/comment.interface';
 import { Types } from 'mongoose';
 
 @ObjectType()
-export class PostModel implements PostInterface {
+export class CommentModel implements CommentInterface {
   @Field(() => String)
   _id: Types.ObjectId;
 
   @Field()
-  title: string;
-
-  @Field()
   content: string;
+
+  @Field(() => String)
+  postId: Types.ObjectId;
 
   @Field(() => String)
   userId: Types.ObjectId;

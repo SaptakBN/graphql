@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { UserInterface } from './user.interface';
+import { UserInterface } from '../schema/user.interface';
 import { Types } from 'mongoose';
 
 @ObjectType()

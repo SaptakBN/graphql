@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { PostModel } from './post.model';
+import { PostModel } from '../model/post.model';
 import { PostService } from '../post.service';
 import { Types } from 'mongoose';
 
