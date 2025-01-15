@@ -14,15 +14,9 @@ input LoginArg {
   password: String!
 }
 
-input RegisterArg {
-  email: String!
-  name: String!
-  password: String!
-}
-
 type Mutation {
-  login(email: LoginArg!): UserModel!
-  register(email: RegisterArg!): UserModel!
+  login(loginArg: LoginArg!): UserModel!
+  register(registerArg: RegisterArg!): UserModel!
 }
 
 type PostModel {
@@ -36,6 +30,12 @@ type Query {
   comment(id: String!): CommentModel!
   post(id: String!): PostModel!
   user(id: String!): UserModel!
+}
+
+input RegisterArg {
+  email: String!
+  name: String!
+  password: String!
 }
 
 type UserModel {
