@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CommentModel {
+  _id: String!
+  content: String!
+  postId: String!
+  userId: String!
+}
+
+type PostModel {
+  _id: String!
+  content: String!
+  title: String!
+  userId: String!
+}
+
+type Query {
+  author(id: String!): CommentModel!
+}
+
+type UserModel {
+  _id: String!
+  email: String!
+  name: String!
+  password: String!
+}

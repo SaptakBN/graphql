@@ -1,18 +1,22 @@
-import mongoose, { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { CommentInterface } from './comment.interface';
 
 export type CommentDocument = HydratedDocument<Comment>;
 
 @Schema({ timestamps: true })
-export class Comment {
+export class Comment implements CommentInterface {
+  @Prop({ type: mongoose.Schema.Types.ObjectId })
+  _id: Types.ObjectId;
+
   @Prop({ required: true })
   content: string;
 
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  userId: string;
+  userId: Types.ObjectId;
 
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Post' })
-  postId: string;
+  postId: Types.ObjectId;
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);
