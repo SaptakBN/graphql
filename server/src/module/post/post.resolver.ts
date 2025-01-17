@@ -1,6 +1,6 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { PostModel } from '../model/post.model';
-import { PostService } from '../post.service';
+import { PostModel } from './model/post.model';
+import { PostService } from './post.service';
 import { Types } from 'mongoose';
 
 @Resolver(() => PostModel)

@@ -1,8 +1,11 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { UserModel } from '../model/user.model';
-import { UserService } from '../user.service';
+import { UserModel } from './model/user.model';
+import { UserService } from './user.service';
 import { Types } from 'mongoose';
-import { CurrentUser } from '@/module/auth/decorator/curr-user.decorator';
+import {
+  CurrentUser,
+  CurrentUserType,
+} from '@/module/auth/decorator/curr-user.decorator';
 import { JwtAuthGuard } from '@/module/auth/guards/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common';
 
@@ -17,8 +20,8 @@ export class UserResolver {
 
   @Query(() => UserModel)
   @UseGuards(JwtAuthGuard)
-  async me(@CurrentUser() user: UserModel) {
-    return this.userService.findOneById(user._id);
+  async me(@CurrentUser() user: CurrentUserType) {
+    return user;
   }
 
   @Query(() => [UserModel])
