@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from '../user/schema/user.schema';
+import { User, UserDocument } from '../user/schema/user.schema';
 import { Model } from 'mongoose';
 import { RegisterArg } from './args/register.arg';
 import { LoginArg } from './args/login.arg';
@@ -21,22 +21,27 @@ export class AuthService {
       });
     }
     const user = await this.userModel.create(registerArg);
-    console.log({ user });
 
-    if (!user) {
-      throw new GraphQLError('User not created', {
-        extensions: {
-          code: 500,
-          type: 'SERVER_ERROR',
-        },
-      });
-    }
-    console.log({ user });
     return user;
   }
 
   async login(loginArg: LoginArg) {
-    const user = await this.userModel.findOne(loginArg);
+    const user = await this.userModel.findOne({ email: loginArg.email });
+    if (!user) {
+      throw new GraphQLError('User not found', {
+        extensions: { code: 404, type: 'NOT_FOUND' },
+      });
+    }
+    const isMatched = await (user as UserDocument).comparePasswords(
+      loginArg.password,
+    );
+
+    if (!isMatched) {
+      throw new GraphQLError('Invalid credentials', {
+        extensions: { code: 401, type: 'UNAUTHORIZED' },
+      });
+    }
+
     return user;
   }
 }
