@@ -17,7 +17,9 @@ export class AuthService {
   ) {}
 
   async register(registerArg: RegisterArg): Promise<UserModel> {
-    const userExist = await this.userService.findByEmail(registerArg.email);
+    const userExist = await this.userService.findByUsername(
+      registerArg.username,
+    );
 
     if (userExist) {
       throw new GraphQLError('User already exist', {
@@ -30,7 +32,7 @@ export class AuthService {
   }
 
   async login(loginArg: LoginArg): Promise<LoginResponse> {
-    const user = await this.userService.findByEmail(loginArg.email);
+    const user = await this.userService.findByUsername(loginArg.username);
     if (!user) {
       throw new GraphQLError('User not found', {
         extensions: { code: 404, type: 'NOT_FOUND' },
@@ -48,7 +50,7 @@ export class AuthService {
 
     const token = this.jwtService.sign({
       id: user._id,
-      email: user.email,
+      username: user.username,
     });
 
     const response: LoginResponse = { ...user.toObject(), token };
@@ -56,8 +58,10 @@ export class AuthService {
     return response;
   }
 
-  async validateUser({ email, password }: any): Promise<User> {
-    const user = (await this.userService.findByEmail(email)) as UserDocument;
+  async validateUser({ username, password }: any): Promise<User> {
+    const user = (await this.userService.findByUsername(
+      username,
+    )) as UserDocument;
     if (!user) {
       throw new GraphQLError('User not found', {
         extensions: { code: 404, type: 'NOT_FOUND' },

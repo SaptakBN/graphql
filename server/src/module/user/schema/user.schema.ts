@@ -13,8 +13,8 @@ export class User implements Partial<UserInterface> {
   @Prop()
   name: string;
 
-  @Prop({ required: true })
-  email: string;
+  @Prop({ required: true, unique: true })
+  username: string;
 
   @Exclude()
   @Prop({ required: true })

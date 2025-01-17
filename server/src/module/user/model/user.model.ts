@@ -11,7 +11,7 @@ export class UserModel implements UserInterface {
   name: string;
 
   @Field()
-  email: string;
+  username: string;
 
   @Field()
   password: string;

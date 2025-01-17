@@ -5,7 +5,7 @@ import { Types } from 'mongoose';
 
 export type CurrentUserType = {
   id: Types.ObjectId;
-  email: string;
+  username: string;
 };
 
 export const CurrentUser = createParamDecorator(

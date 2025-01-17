@@ -7,6 +7,8 @@ services:
       - "4000:4000"
     volumes:
       - ./server:/server
+    networks:
+      - graphql_network
     env_file:
       - .env
     depends_on:
@@ -19,6 +21,13 @@ services:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
+    networks:
+      - graphql_network
 
 volumes:
   mongo_data:
+    name: mongo_data
+
+networks:
+  graphql_network:
+    name: graphql_network

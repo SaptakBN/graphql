@@ -7,15 +7,11 @@ import { User } from '@/module/user/schema/user.schema';
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    super({
-      usernameField: 'email',
-    });
+    super();
   }
 
-  async validate(email: string, password: string): Promise<User> {
-    const user = this.authService.validateUser({ email, password });
+  async validate(username: string, password: string): Promise<User> {
+    const user = this.authService.validateUser({ username, password });
     return user;
   }
 }

@@ -10,16 +10,16 @@ type CommentModel {
 }
 
 input LoginArg {
-  email: String!
   password: String!
+  username: String!
 }
 
 type LoginResponse {
   _id: String!
-  email: String!
   name: String!
   password: String!
   token: String!
+  username: String!
 }
 
 type Mutation {
@@ -43,14 +43,14 @@ type Query {
 }
 
 input RegisterArg {
-  email: String!
   name: String!
   password: String!
+  username: String!
 }
 
 type UserModel {
   _id: String!
-  email: String!
   name: String!
   password: String!
+  username: String!
 }
