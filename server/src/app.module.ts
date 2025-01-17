@@ -27,6 +27,12 @@ import { join } from 'path';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'schema/schema.gql'),
       sortSchema: true,
+      playground: true,
+      introspection: true,
+      context: ({ req, res }: { req: Request; res: Response }) => ({
+        req,
+        res,
+      }),
     }),
     AuthModule,
     UserModule,

@@ -5,10 +5,7 @@ import { CommentInterface } from './comment.interface';
 export type CommentDocument = HydratedDocument<Comment>;
 
 @Schema({ timestamps: true })
-export class Comment implements CommentInterface {
-  @Prop({ type: mongoose.Schema.Types.ObjectId })
-  _id: Types.ObjectId;
-
+export class Comment implements Partial<CommentInterface> {
   @Prop({ required: true })
   content: string;
 

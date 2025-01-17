@@ -30,6 +30,7 @@ type Query {
   comment(id: String!): CommentModel!
   post(id: String!): PostModel!
   user(id: String!): UserModel!
+  users: [UserModel!]!
 }
 
 input RegisterArg {

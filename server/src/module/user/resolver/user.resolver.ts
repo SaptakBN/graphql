@@ -11,4 +11,9 @@ export class UserResolver {
   async user(@Args('id', { type: () => String }) id: Types.ObjectId) {
     return this.userService.findOneById(id);
   }
+
+  @Query(() => [UserModel])
+  async users() {
+    return this.userService.find();
+  }
 }

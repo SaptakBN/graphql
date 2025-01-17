@@ -5,10 +5,7 @@ import { PostInterface } from './post.interface';
 export type PostDocument = HydratedDocument<Post>;
 
 @Schema({ timestamps: true })
-export class Post implements PostInterface {
-  @Prop({ type: mongoose.Schema.Types.ObjectId })
-  _id: Types.ObjectId;
-
+export class Post implements Partial<PostInterface> {
   @Prop({ required: true })
   title: string;
 

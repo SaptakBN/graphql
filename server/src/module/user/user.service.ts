@@ -18,4 +18,8 @@ export class UserService {
     }
     return foundUser;
   }
+
+  find() {
+    return this.userModel.find();
+  }
 }
