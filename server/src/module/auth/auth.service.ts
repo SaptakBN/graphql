@@ -5,12 +5,18 @@ import { Model } from 'mongoose';
 import { RegisterArg } from './args/register.arg';
 import { LoginArg } from './args/login.arg';
 import { GraphQLError } from 'graphql';
+import { JwtService } from '@nestjs/jwt';
+import { LoginResponse } from './model/login-response.model';
+import { UserModel } from '../user/model/user.model';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    private jwtService: JwtService,
+  ) {}
 
-  async register(registerArg: RegisterArg) {
+  async register(registerArg: RegisterArg): Promise<UserModel> {
     const userExist = await this.userModel.findOne({
       email: registerArg.email,
     });
@@ -25,7 +31,7 @@ export class AuthService {
     return user;
   }
 
-  async login(loginArg: LoginArg) {
+  async login(loginArg: LoginArg): Promise<LoginResponse> {
     const user = await this.userModel.findOne({ email: loginArg.email });
     if (!user) {
       throw new GraphQLError('User not found', {
@@ -42,6 +48,13 @@ export class AuthService {
       });
     }
 
-    return user;
+    const token = this.jwtService.sign({
+      id: user._id,
+      email: user.email,
+    });
+
+    const response: LoginResponse = { ...user.toObject(), token };
+
+    return response;
   }
 }
