@@ -29,10 +29,13 @@ import { join } from 'path';
       sortSchema: true,
       playground: true,
       introspection: true,
-      context: ({ req, res }: { req: Request; res: Response }) => ({
-        req,
-        res,
-      }),
+      context: ({ req, res }: { req: Request; res: Response }) => {
+        // console.log(req);
+        return {
+          req,
+          res,
+        };
+      },
     }),
     AuthModule,
     UserModule,
