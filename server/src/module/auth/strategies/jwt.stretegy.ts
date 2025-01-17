@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AuthService } from '../auth.service';
+import { CurrentUserType } from '../decorator/curr-user.decorator';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -19,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(_: any, payload: any): Promise<User> {
+  async validate(_: Response, payload: CurrentUserType): Promise<User> {
     const user = await this.authService.validateUserById(payload.id);
     return user;
   }

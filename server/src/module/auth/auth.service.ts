@@ -58,7 +58,7 @@ export class AuthService {
     return response;
   }
 
-  async validateUser({ username, password }: any): Promise<User> {
+  async validateUser({ username, password }: LoginArg): Promise<User> {
     const user = (await this.userService.findByUsername(
       username,
     )) as UserDocument;
