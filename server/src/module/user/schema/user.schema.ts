@@ -1,5 +1,5 @@
 import { HydratedDocument } from 'mongoose';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Exclude } from 'class-transformer';
 import { UserInterface } from './user.interface';
 import * as bcrypt from 'bcryptjs';
@@ -36,4 +36,8 @@ UserSchema.methods.comparePasswords = async function (
   return bcrypt.compare(submittedPassword, this.password);
 };
 
-export { UserSchema };
+const UserRepository = MongooseModule.forFeature([
+  { name: User.name, schema: UserSchema },
+]);
+
+export { UserRepository };

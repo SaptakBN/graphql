@@ -22,4 +22,13 @@ export class UserService {
   find() {
     return this.userModel.find();
   }
+
+  async findByEmail(email: string) {
+    const foundUser = await this.userModel.findOne({ email });
+    return foundUser;
+  }
+
+  async create(user: User) {
+    return this.userModel.create(user);
+  }
 }
