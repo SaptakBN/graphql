@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterDocument } from "@/GraphQL/generated/graphql";
-import { RegisterMutation, RegisterMutationVariables } from "@/GraphQL/generated/graphql";
-import { RegistrationFormData, registrationValidator } from "@/validators/registration.validator";
+import { RegisterDocument, RegisterMutation, RegisterMutationVariables } from "@/GraphQL/generated/graphql";
+import { RegistrationFormData, registrationValidator } from "@/validators";
 
 export const RegistrationForm = () => {
   const {
