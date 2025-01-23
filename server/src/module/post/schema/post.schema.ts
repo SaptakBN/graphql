@@ -1,5 +1,5 @@
 import mongoose, { HydratedDocument, Types } from 'mongoose';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { PostInterface } from './post.interface';
 
 export type PostDocument = HydratedDocument<Post>;
@@ -16,4 +16,8 @@ export class Post implements Partial<PostInterface> {
   userId: Types.ObjectId;
 }
 
-export const PostSchema = SchemaFactory.createForClass(Post);
+const PostSchema = SchemaFactory.createForClass(Post);
+
+export const PostRepository = MongooseModule.forFeature([
+  { name: Post.name, schema: PostSchema },
+]);

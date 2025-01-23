@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ModuleMetadata } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './module/auth/auth.module';
@@ -9,7 +9,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 
-@Module({
+const metadata: ModuleMetadata = {
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -34,5 +34,7 @@ import { join } from 'path';
     CommentModule,
   ],
   providers: [ConfigService],
-})
+};
+
+@Module(metadata)
 export class AppModule {}

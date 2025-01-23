@@ -1,5 +1,5 @@
 import mongoose, { HydratedDocument, Types } from 'mongoose';
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { CommentInterface } from './comment.interface';
 
 export type CommentDocument = HydratedDocument<Comment>;
@@ -16,4 +16,8 @@ export class Comment implements Partial<CommentInterface> {
   postId: Types.ObjectId;
 }
 
-export const CommentSchema = SchemaFactory.createForClass(Comment);
+const CommentSchema = SchemaFactory.createForClass(Comment);
+
+export const CommentRepository = MongooseModule.forFeature([
+  { name: Comment.name, schema: CommentSchema },
+]);
