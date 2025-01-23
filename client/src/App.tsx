@@ -1,7 +1,12 @@
 import { Router } from "@/router";
+import { GraphqlProvider } from "@/GraphQL";
 
 function App() {
-  return <Router />;
+  return (
+    <GraphqlProvider>
+      <Router />
+    </GraphqlProvider>
+  );
 }
 
 export default App;
