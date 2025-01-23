@@ -14,6 +14,19 @@ services:
     depends_on:
       - mongo
 
+  frontend:
+    container_name: client
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/client
+    networks:
+      - graphql_network
+    env_file:
+      - .env
+
   mongo:
     image: mongo:5.0
     container_name: mongodb
