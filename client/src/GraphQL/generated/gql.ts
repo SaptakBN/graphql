@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      password\n      token\n      username\n    }\n  }\n": types.LoginDocument,
+    "\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      token\n      username\n    }\n  }\n": types.LoginDocument,
     "\n  mutation Register($registerArg: RegisterArg!) {\n    register(registerArg: $registerArg) {\n      _id\n      name\n      username\n    }\n  }\n": types.RegisterDocument,
     "\n  query User($userId: String!) {\n    user(id: $userId) {\n      _id\n      name\n      username\n    }\n  }\n": types.UserDocument,
 };
@@ -36,7 +36,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      password\n      token\n      username\n    }\n  }\n"): (typeof documents)["\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      password\n      token\n      username\n    }\n  }\n"];
+export function graphql(source: "\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      token\n      username\n    }\n  }\n"): (typeof documents)["\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      token\n      username\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
