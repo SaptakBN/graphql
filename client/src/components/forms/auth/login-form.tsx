@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginFormData, loginValidator } from "@/validators/login.validator";
+import { LoginFormData, loginValidator } from "@/validators";
 import { LoginDocument, LoginMutation, LoginMutationVariables } from "@/GraphQL/generated/graphql";
 
 export const LoginForm = () => {
