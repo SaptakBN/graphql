@@ -3,11 +3,13 @@ import "./login.css";
 
 const Login = () => {
   return (
-    <div className="main">
-      <input type="checkbox" id="chk" aria-hidden="true" />
-      <RegistrationForm />
-      <LoginForm />
-    </div>
+    <main className="loginLayout">
+      <div className="main">
+        <input type="checkbox" id="chk" aria-hidden="true" />
+        <RegistrationForm />
+        <LoginForm />
+      </div>
+    </main>
   );
 };
 

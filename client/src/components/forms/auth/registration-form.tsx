@@ -33,7 +33,7 @@ export const RegistrationForm = () => {
         <label htmlFor="chk" aria-hidden="true">
           Sign up
         </label>
-        <input type="name" placeholder="name" {...registerInput("name")} />
+        <input type="name" placeholder="Name" {...registerInput("name")} />
         {errors.name && touchedFields.name && <p>{errors.name.message}</p>}
         <input type="text" placeholder="Username" {...registerInput("username")} />
         {errors.username && touchedFields.username && <p>{errors.username.message}</p>}
