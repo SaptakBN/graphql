@@ -17,7 +17,6 @@ input LoginArg {
 type LoginResponse {
   _id: String!
   name: String!
-  password: String!
   token: String!
   username: String!
 }

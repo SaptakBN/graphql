@@ -33,7 +33,6 @@ export type LoginResponse = {
   __typename?: 'LoginResponse';
   _id: Scalars['String']['output'];
   name: Scalars['String']['output'];
-  password: Scalars['String']['output'];
   token: Scalars['String']['output'];
   username: Scalars['String']['output'];
 };

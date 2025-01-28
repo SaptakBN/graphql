@@ -1,8 +1,8 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType, OmitType } from '@nestjs/graphql';
 import { UserModel } from '@/module/user/model/user.model';
 
 @ObjectType()
-export class LoginResponse extends UserModel {
+export class LoginResponse extends OmitType(UserModel, ['password']) {
   @Field(() => String)
   token: string;
 }
