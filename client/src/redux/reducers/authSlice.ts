@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "@/redux";
+import { type RootState } from "@/redux";
 import { LoginResponse } from "@/GraphQL/generated/graphql";
+import { storage } from "@/services";
+import { SliceEnum } from "@/enums";
 
-interface authInterface {
+export interface authInterface {
   isAuthenticated: boolean;
   session: LoginResponse | null;
 }
@@ -13,10 +15,19 @@ const initialState: authInterface = {
   session: null,
 };
 
-export const authSlice = createSlice({
-  name: "auth",
+const getStorage = () => {
+  const session = storage.getInitialState();
+  if (session)
+    return {
+      isAuthenticated: true,
+      session,
+    };
+  else return initialState;
+};
 
-  initialState,
+export const authSlice = createSlice({
+  name: SliceEnum.AUTH,
+  initialState: getStorage(),
   reducers: {
     login: (store: authInterface, action: PayloadAction<LoginResponse>) => {
       store.isAuthenticated = true;

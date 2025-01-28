@@ -1,10 +1,14 @@
 import { Router } from "@/router";
 import { GraphqlProvider } from "@/GraphQL";
+import { Provider } from "react-redux";
+import { store } from "@/redux";
 
 function App() {
   return (
     <GraphqlProvider>
-      <Router />
+      <Provider store={store}>
+        <Router />
+      </Provider>
     </GraphqlProvider>
   );
 }

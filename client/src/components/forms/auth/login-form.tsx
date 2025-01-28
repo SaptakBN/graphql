@@ -3,8 +3,10 @@ import { useMutation } from "@apollo/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormData, loginValidator } from "@/validators";
 import { LoginDocument, LoginMutation, LoginMutationVariables } from "@/GraphQL/generated/graphql";
+import { useAppDispatch, login as LoginAction } from "@/redux";
 
 export const LoginForm = () => {
+  const dispatch = useAppDispatch();
   const [login, { data, loading, error }] = useMutation<LoginMutation, LoginMutationVariables>(LoginDocument);
 
   const {
@@ -22,6 +24,7 @@ export const LoginForm = () => {
       },
     });
     console.log({ response, data, loading, error });
+    if (response.data) dispatch(LoginAction(response.data.login));
   }
 
   return (

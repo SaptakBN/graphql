@@ -1,28 +1,45 @@
 import { AES, enc } from "crypto-js";
+import { LoginResponse } from "@/GraphQL/generated/graphql";
+import { SliceEnum } from "@/enums";
+import { STORAGE_SECRET } from "@/config";
 
-export class storageService {
+class storageService {
   constructor() {}
-  private readonly SECRET_KEY = "my-secret-key";
+  private readonly SECRET_KEY = STORAGE_SECRET;
   private readonly storage: Storage = localStorage;
 
-  getInitialState() {
-    this.storage.getItem("auth");
+  getInitialState(): LoginResponse | null {
+    const data = this.storage.getItem(SliceEnum.AUTH);
+    if (!data) return null;
+
+    return this.decryptData(data);
   }
 
-  setStorage(value: string) {
-    this.storage.setItem("auth", value);
+  setStorage<T>(value: T): void {
+    const data = this.encryptData<T>(value);
+    this.storage.setItem(SliceEnum.AUTH, data);
   }
 
-  clearStorage() {
+  clearStorage(): void {
     this.storage.clear();
   }
 
-  encryptData = (data: string): string => {
-    return AES.encrypt(data, this.SECRET_KEY).toString();
-  };
+  encryptData<T>(data: T): string {
+    const jsonData = JSON.stringify(data);
+    return AES.encrypt(jsonData, this.SECRET_KEY).toString();
+  }
 
-  decryptData = (encryptedData: string): string => {
-    const bytes = AES.decrypt(encryptedData, this.SECRET_KEY);
-    return bytes.toString(enc.Utf8);
-  };
+  decryptData(encryptedData: string): LoginResponse | null {
+    try {
+      const bytes = AES.decrypt(encryptedData, this.SECRET_KEY);
+      const jsonData = bytes.toString(enc.Utf8);
+      return JSON.parse(jsonData || "null");
+    } catch (error) {
+      console.log("Error occured: ", error);
+      this.clearStorage();
+      return null;
+    }
+  }
 }
+
+export const storage = new storageService();

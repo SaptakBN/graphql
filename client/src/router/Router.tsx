@@ -2,8 +2,11 @@ import { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Login, Home } from "@/pages";
 import { Loader } from "@/components";
+import { selectAuth, useAppSelector } from "@/redux";
+import { AuthorizedGuard, UnauthorizedGuard } from "@/router/guards";
 
 export const Router = () => {
+  const { isAuthenticated } = useAppSelector(selectAuth);
   const router = (
     <BrowserRouter>
       <Routes>
@@ -11,17 +14,21 @@ export const Router = () => {
         <Route
           path="/login"
           element={
-            <Suspense fallback={<Loader />}>
-              <Login />
-            </Suspense>
+            <UnauthorizedGuard isAuthenticated={isAuthenticated}>
+              <Suspense fallback={<Loader />}>
+                <Login />
+              </Suspense>
+            </UnauthorizedGuard>
           }
         />
         <Route
           path="/home"
           element={
-            <Suspense fallback={<Loader />}>
-              <Home />
-            </Suspense>
+            <AuthorizedGuard isAuthenticated={isAuthenticated}>
+              <Suspense fallback={<Loader />}>
+                <Home />
+              </Suspense>
+            </AuthorizedGuard>
           }
         />
       </Routes>
