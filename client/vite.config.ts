@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react-swc";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { config } from "dotenv";
 
-// Load environment variables
 config();
 
 export default defineConfig({
