@@ -1,8 +1,8 @@
-import { LoginDocument, LoginMutation, LoginMutationVariables } from "@/GraphQL/generated/graphql";
-import { LoginFormData, loginValidator } from "@/validators/login.validator";
+import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { LoginFormData, loginValidator } from "@/validators/login.validator";
+import { LoginDocument, LoginMutation, LoginMutationVariables } from "@/GraphQL/generated/graphql";
 
 export const LoginForm = () => {
   const [login, { data, loading, error }] = useMutation<LoginMutation, LoginMutationVariables>(LoginDocument);
