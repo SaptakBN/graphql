@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, from } from "@apollo/clien
 import { ErrorResponse, onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { GQL_URI } from "@/config";
+import { authMiddleware } from "@/GraphQL/middleware";
 
 const errorLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
   if (graphQLErrors) {
@@ -15,7 +16,7 @@ const errorLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
   }
 });
 
-const link = from([errorLink, new HttpLink({ uri: GQL_URI })]);
+const link = from([authMiddleware, errorLink, new HttpLink({ uri: GQL_URI })]);
 
 const client = new ApolloClient({
   link: link,

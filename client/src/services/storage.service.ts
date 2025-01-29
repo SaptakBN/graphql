@@ -24,6 +24,11 @@ class storageService {
     this.storage.clear();
   }
 
+  getToken(): string | null {
+    const data = this.getInitialState();
+    return data ? data.token : null;
+  }
+
   encryptData<T>(data: T): string {
     const jsonData = JSON.stringify(data);
     return AES.encrypt(jsonData, this.SECRET_KEY).toString();

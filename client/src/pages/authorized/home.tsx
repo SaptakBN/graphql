@@ -1,6 +1,10 @@
+import { useQuery } from "@apollo/client";
 import "./home.css";
+import { MeDocument } from "@/GraphQL/generated/graphql";
 
 const Home = () => {
+  const { data, error } = useQuery(MeDocument);
+  console.log({ data, error });
   return (
     <main className="main">
       <div className="blog-container">
@@ -43,4 +47,5 @@ const Home = () => {
     </main>
   );
 };
+
 export default Home;
