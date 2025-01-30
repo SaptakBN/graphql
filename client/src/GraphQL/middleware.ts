@@ -1,11 +1,11 @@
 import { ApolloLink } from "@apollo/client";
-import { storage } from "@/services";
+import { getToken } from "@/redux";
 
 export const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      authorization: `Bearer ${storage.getToken()}`,
+      authorization: `Bearer ${getToken()}`,
     },
   }));
 
