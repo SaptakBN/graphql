@@ -1,13 +1,17 @@
 {
   "name": "graphql",
   "version": "1.0.0",
-  "description": "MERN Stack project with GraphQL",
+  "description": "MERN Stack project with GraphQL & NestJS",
   "main": "index.js",
   "scripts": {
+    "permit": "sudo chown -R $USER:$USER .",
     "start": "sudo docker compose up -d",
     "start:build": "sudo docker compose up --build -d",
     "down": "sudo docker compose down",
-    "down:v": "sudo docker compose down -v"
+    "down:v": "sudo docker compose down -v",
+    "log-be": "sudo docker logs server -f",
+    "log-fe": "sudo docker logs client -f",
+    "log-db": "sudo docker logs database -f"
   },
   "keywords": [],
   "author": "Saptak Banerjee",
