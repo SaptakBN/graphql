@@ -5,7 +5,7 @@ import { STORAGE_SECRET } from "@/config";
 
 class storageService {
   constructor() {}
-  private readonly SECRET_KEY = STORAGE_SECRET!;
+  private readonly SECRET_KEY = STORAGE_SECRET;
   private readonly storage: Storage = localStorage;
 
   getInitialState(): LoginResponse | null {
