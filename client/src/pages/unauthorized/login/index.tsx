@@ -1,10 +1,10 @@
 import { LoginForm, RegistrationForm } from "@/components";
-import "./login.css";
+import styles from "./login.module.css";
 
 const Login = () => {
   return (
-    <main className="loginLayout">
-      <div className="main">
+    <main className={styles.loginLayout}>
+      <div className={styles.main}>
         <input type="checkbox" id="chk" aria-hidden="true" />
         <RegistrationForm />
         <LoginForm />
