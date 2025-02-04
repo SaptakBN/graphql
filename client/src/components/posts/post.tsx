@@ -13,8 +13,7 @@ export function Post({ post }: { post: UserPostModel }) {
       <div className="flex items-center text-gray-600 text-sm mb-2">
         <img alt="Avatar of User1" className="rounded-full mr-2" src="https://placehold.co/40x40" />
         <span>
-          Posted by:
-          <strong>{post.user?.username}</strong>
+          Posted by: <strong>{post.user?.username}</strong>
         </span>
         <span className="ml-4">{post.createdAt}</span>
       </div>

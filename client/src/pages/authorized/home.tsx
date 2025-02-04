@@ -4,7 +4,9 @@ import { Header, HomeInputs, PostList } from "@/components";
 
 const Home = () => {
   const { data, error } = useQuery<MeQuery, MeQueryVariables>(MeDocument);
+
   if (error || !data) return <>{error?.message}</>;
+
   return (
     <main className="bg-gray-100 font-roboto h-screen">
       <Header user={data.me} />

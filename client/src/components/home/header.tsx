@@ -1,6 +1,8 @@
 import { MeQuery } from "@/GraphQL/generated/graphql";
 
-export const Header = ({ user }: { user: MeQuery["me"] }) => {
+type User = MeQuery["me"];
+
+export const Header = ({ user }: { user: User }) => {
   return (
     <header className="bg-white shadow-md py-4">
       <div className="container mx-auto flex justify-between items-center px-4">
