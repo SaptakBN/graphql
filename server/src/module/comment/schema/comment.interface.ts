@@ -5,4 +5,8 @@ export interface CommentInterface {
   content: string;
   userId: Types.ObjectId;
   postId: Types.ObjectId;
+  likes: number;
+  dislikes: number;
+  createdAt: Date;
+  updatedAt: Date;
 }

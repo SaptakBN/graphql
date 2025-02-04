@@ -14,6 +14,12 @@ export class Comment implements Partial<CommentInterface> {
 
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Post' })
   postId: Types.ObjectId;
+
+  @Prop({ required: true, default: 0 })
+  likes: number;
+
+  @Prop({ required: true, default: 0 })
+  dislikes: number;
 }
 
 const CommentSchema = SchemaFactory.createForClass(Comment);

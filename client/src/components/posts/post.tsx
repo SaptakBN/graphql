@@ -1,8 +1,10 @@
-export function Post() {
+import { PostModel } from "@/GraphQL/generated/graphql";
+
+export function Post({ post }: { post: PostModel }) {
   return (
     <div className="bg-white p-4 rounded shadow-md">
       <div className="flex justify-between items-center mb-2">
-        <h2 className="text-xl font-bold">Post Title 1</h2>
+        <h2 className="text-xl font-bold">{post.title}</h2>
         <div className="flex space-x-2">
           <button className="text-blue-500 hover:underline">Edit</button>
           <button className="text-red-500 hover:underline">Delete</button>
@@ -14,20 +16,18 @@ export function Post() {
           Posted by:
           <strong>User1</strong>
         </span>
-        <span className="ml-4">2023-10-01 12:00 PM</span>
+        <span className="ml-4">{post.createdAt}</span>
       </div>
-      <p className="text-gray-700 mb-4">
-        This is the content of the first post. It contains some interesting information.
-      </p>
+      <p className="text-gray-700 mb-4">{post.content}</p>
       <div className="flex justify-between items-center">
         <div className="flex space-x-4">
           <button className="flex items-center text-gray-600 hover:text-blue-500">
             <i className="fas fa-thumbs-up mr-1"></i>
-            <span>10</span>
+            <span>{post.likes}</span>
           </button>
           <button className="flex items-center text-gray-600 hover:text-red-500">
             <i className="fas fa-thumbs-down mr-1"></i>
-            <span>2</span>
+            <span>{post.dislikes}</span>
           </button>
         </div>
         <button className="flex items-center text-gray-600 hover:text-green-500" onClick={() => {}}>

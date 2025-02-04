@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { MeDocument, MeQuery, MeQueryVariables } from "@/GraphQL/generated/graphql";
-import { Header, HomeInputs, Post } from "@/components";
+import { Header, HomeInputs, PostList } from "@/components";
 
 const Home = () => {
   const { data, error } = useQuery<MeQuery, MeQueryVariables>(MeDocument);
@@ -11,7 +11,7 @@ const Home = () => {
       <main className="container mx-auto mt-6 px-4">
         <HomeInputs />
         <div className="space-y-4">
-          <Post />
+          <PostList />
         </div>
       </main>
     </main>

@@ -17,6 +17,7 @@ const documents = {
     "\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      token\n      username\n    }\n  }\n": types.LoginDocument,
     "\n  mutation Register($registerArg: RegisterArg!) {\n    register(registerArg: $registerArg) {\n      _id\n      name\n      username\n    }\n  }\n": types.RegisterDocument,
     "\n  query Me {\n    me {\n      _id\n      name\n      username\n    }\n  }\n": types.MeDocument,
+    "\n  query Posts {\n    posts {\n      _id\n      content\n      dislikes\n      likes\n      title\n      userId\n    }\n  }\n": types.PostsDocument,
     "\n  query User($userId: String!) {\n    user(id: $userId) {\n      _id\n      name\n      username\n    }\n  }\n": types.UserDocument,
 };
 
@@ -46,6 +47,10 @@ export function graphql(source: "\n  mutation Register($registerArg: RegisterArg
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query Me {\n    me {\n      _id\n      name\n      username\n    }\n  }\n"): (typeof documents)["\n  query Me {\n    me {\n      _id\n      name\n      username\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query Posts {\n    posts {\n      _id\n      content\n      dislikes\n      likes\n      title\n      userId\n    }\n  }\n"): (typeof documents)["\n  query Posts {\n    posts {\n      _id\n      content\n      dislikes\n      likes\n      title\n      userId\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

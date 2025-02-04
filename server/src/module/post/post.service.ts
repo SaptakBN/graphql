@@ -8,7 +8,7 @@ import { GraphQLError } from 'graphql';
 export class PostService {
   constructor(@InjectModel(Post.name) private postModel: Model<Post>) {}
 
-  async findOneById(id: Types.ObjectId) {
+  async findOneById(id: Types.ObjectId): Promise<Post> {
     const foundPost = await this.postModel.findById(id);
 
     if (!foundPost) {
@@ -17,5 +17,9 @@ export class PostService {
       });
     }
     return foundPost;
+  }
+
+  findAll(): Promise<Post[]> {
+    return this.postModel.find();
   }
 }

@@ -11,4 +11,9 @@ export class PostResolver {
   async post(@Args('id', { type: () => String }) id: Types.ObjectId) {
     return this.postService.findOneById(id);
   }
+
+  @Query(() => [PostModel])
+  async posts() {
+    return this.postService.findAll();
+  }
 }

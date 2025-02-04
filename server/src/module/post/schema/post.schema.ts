@@ -14,6 +14,12 @@ export class Post implements Partial<PostInterface> {
 
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   userId: Types.ObjectId;
+
+  @Prop({ default: 0 })
+  likes: number;
+
+  @Prop({ default: 0 })
+  dislikes: number;
 }
 
 const PostSchema = SchemaFactory.createForClass(Post);

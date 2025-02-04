@@ -30,14 +30,14 @@ export const LoginForm = () => {
   return (
     <div className="login">
       <form onSubmit={handleSubmit(handleLogin)}>
-        <label htmlFor="chk" aria-hidden="true">
+        <label className="auth-label" htmlFor="chk" aria-hidden="true">
           Login
         </label>
-        <input type="text" placeholder="Username" {...registerInput("username")} />
+        <input className="auth-input" type="text" placeholder="Username" {...registerInput("username")} />
         {errors.username && touchedFields.username && <p>{errors.username.message}</p>}
-        <input type="password" placeholder="Password" {...registerInput("password")} />
+        <input className="auth-input" type="password" placeholder="Password" {...registerInput("password")} />
         {errors.password && touchedFields.password && <p>{errors.password.message}</p>}
-        <button>Login</button>
+        <button className="auth-button">Login</button>
       </form>
     </div>
   );

@@ -30,18 +30,18 @@ export const RegistrationForm = () => {
   return (
     <div className="signup">
       <form onSubmit={handleSubmit(handleRegister)}>
-        <label htmlFor="chk" aria-hidden="true">
+        <label className="auth-label" htmlFor="chk" aria-hidden="true">
           Sign up
         </label>
-        <input type="name" placeholder="Name" {...registerInput("name")} />
+        <input className="auth-input" type="name" placeholder="Name" {...registerInput("name")} />
         {errors.name && touchedFields.name && <p>{errors.name.message}</p>}
-        <input type="text" placeholder="Username" {...registerInput("username")} />
+        <input className="auth-input" type="text" placeholder="Username" {...registerInput("username")} />
         {errors.username && touchedFields.username && <p>{errors.username.message}</p>}
-        <input type="password" placeholder="Password" {...registerInput("password")} />
+        <input className="auth-input" type="password" placeholder="Password" {...registerInput("password")} />
         {errors.password && touchedFields.password && <p>{errors.password.message}</p>}
-        <input type="password" placeholder="Confirm Password" {...registerInput("confirmPassword")} />
+        <input className="auth-input" type="password" placeholder="Confirm Password" {...registerInput("confirmPassword")} />
         {errors.confirmPassword && touchedFields.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-        <button>Sign up</button>
+        <button className="auth-button">Sign up</button>
       </form>
     </div>
   );

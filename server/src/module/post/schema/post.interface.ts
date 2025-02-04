@@ -5,4 +5,8 @@ export interface PostInterface {
   title: string;
   content: string;
   userId: Types.ObjectId;
+  likes: number;
+  dislikes: number;
+  createdAt: Date;
+  updatedAt: Date;
 }

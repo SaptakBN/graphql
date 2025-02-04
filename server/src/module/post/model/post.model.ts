@@ -15,4 +15,16 @@ export class PostModel implements PostInterface {
 
   @Field(() => String)
   userId: Types.ObjectId;
+
+  @Field(() => Number)
+  likes: number;
+
+  @Field(() => Number)
+  dislikes: number;
+
+  @Field(() => Date)
+  createdAt: Date;
+
+  @Field(() => Date)
+  updatedAt: Date;
 }
