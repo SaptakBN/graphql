@@ -9,5 +9,5 @@ export function PostList() {
 
   if (error || !data) return <>{error?.message}</>;
 
-  return data.posts.map((post: PostModel) => <Post post={post} />);
+  return data.posts.map((post: Partial<PostModel>) => <Post post={post} />);
 }

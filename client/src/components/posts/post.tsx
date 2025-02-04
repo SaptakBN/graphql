@@ -1,6 +1,6 @@
 import { PostModel } from "@/GraphQL/generated/graphql";
 
-export function Post({ post }: { post: PostModel }) {
+export function Post({ post }: { post: Partial<PostModel> }) {
   return (
     <div className="bg-white p-4 rounded shadow-md">
       <div className="flex justify-between items-center mb-2">

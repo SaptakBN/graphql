@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    "\n  mutation CreatePost($postArg: PostArg!) {\n    createPost(postArg: $postArg) {\n      _id\n      title\n      content\n      userId\n    }\n  }\n": types.CreatePostDocument,
     "\n  mutation Login($loginArg: LoginArg!) {\n    login(loginArg: $loginArg) {\n      _id\n      name\n      token\n      username\n    }\n  }\n": types.LoginDocument,
     "\n  mutation Register($registerArg: RegisterArg!) {\n    register(registerArg: $registerArg) {\n      _id\n      name\n      username\n    }\n  }\n": types.RegisterDocument,
     "\n  query Me {\n    me {\n      _id\n      name\n      username\n    }\n  }\n": types.MeDocument,
@@ -35,6 +36,10 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation CreatePost($postArg: PostArg!) {\n    createPost(postArg: $postArg) {\n      _id\n      title\n      content\n      userId\n    }\n  }\n"): (typeof documents)["\n  mutation CreatePost($postArg: PostArg!) {\n    createPost(postArg: $postArg) {\n      _id\n      title\n      content\n      userId\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

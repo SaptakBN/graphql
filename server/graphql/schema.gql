@@ -31,8 +31,14 @@ type LoginResponse {
 }
 
 type Mutation {
+  createPost(postArg: PostArg!): PostModel!
   login(loginArg: LoginArg!): LoginResponse!
   register(registerArg: RegisterArg!): UserModel!
+}
+
+input PostArg {
+  content: String!
+  title: String!
 }
 
 type PostModel {
