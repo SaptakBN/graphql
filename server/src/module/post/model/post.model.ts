@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, HideField, ObjectType } from '@nestjs/graphql';
 import { PostInterface } from '../schema/post.interface';
 import { Types } from 'mongoose';
 
@@ -13,7 +13,7 @@ export class PostModel implements PostInterface {
   @Field()
   content: string;
 
-  @Field(() => String)
+  @HideField()
   userId: Types.ObjectId;
 
   @Field(() => Number)

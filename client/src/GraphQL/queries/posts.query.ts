@@ -8,7 +8,13 @@ export const GET_POSTS = gql`
       dislikes
       likes
       title
-      userId
+      createdAt
+      updatedAt
+      user {
+        _id
+        name
+        username
+      }
     }
   }
 `;

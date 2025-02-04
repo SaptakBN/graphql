@@ -24,12 +24,23 @@ export class PostService {
     return foundPost;
   }
 
-  findAll(): Promise<Post[]> {
-    return this.postModel.find();
+  async findAll() {
+    const posts = await this.postModel.find().populate('userId');
+
+    return posts.map((post) => ({
+      ...post.toObject(),
+      userId: post.userId._id.toString(),
+      user: post.userId,
+    }));
   }
 
-  async create(postArg: PostArg, userId: Types.ObjectId): Promise<Post> {
+  async create(postArg: PostArg, userId: Types.ObjectId) {
     const user = await this.userService.findOneById(userId);
-    return this.postModel.create({ ...postArg, userId: user._id });
+    const createdPost = await this.postModel.create({
+      ...postArg,
+      userId: user._id,
+    });
+
+    return { ...createdPost.toObject(), user };
   }
 }

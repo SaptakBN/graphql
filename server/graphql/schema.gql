@@ -31,7 +31,7 @@ type LoginResponse {
 }
 
 type Mutation {
-  createPost(postArg: PostArg!): PostModel!
+  createPost(postArg: PostArg!): UserPostModel!
   login(loginArg: LoginArg!): LoginResponse!
   register(registerArg: RegisterArg!): UserModel!
 }
@@ -41,22 +41,11 @@ input PostArg {
   title: String!
 }
 
-type PostModel {
-  _id: String!
-  content: String!
-  createdAt: DateTime!
-  dislikes: Float!
-  likes: Float!
-  title: String!
-  updatedAt: DateTime!
-  userId: String!
-}
-
 type Query {
   comment(id: String!): CommentModel!
   me: UserModel!
-  post(id: String!): PostModel!
-  posts: [PostModel!]!
+  post(id: String!): UserPostModel!
+  posts: [UserPostModel!]!
   user(id: String!): UserModel!
   users: [UserModel!]!
 }
@@ -70,6 +59,16 @@ input RegisterArg {
 type UserModel {
   _id: String!
   name: String!
-  password: String!
   username: String!
+}
+
+type UserPostModel {
+  _id: String!
+  content: String!
+  createdAt: DateTime!
+  dislikes: Float!
+  likes: Float!
+  title: String!
+  updatedAt: DateTime!
+  user: UserModel!
 }

@@ -1,6 +1,6 @@
-import { PostModel } from "@/GraphQL/generated/graphql";
+import { UserPostModel } from "@/GraphQL/generated/graphql";
 
-export function Post({ post }: { post: Partial<PostModel> }) {
+export function Post({ post }: { post: UserPostModel }) {
   return (
     <div className="bg-white p-4 rounded shadow-md">
       <div className="flex justify-between items-center mb-2">
@@ -14,7 +14,7 @@ export function Post({ post }: { post: Partial<PostModel> }) {
         <img alt="Avatar of User1" className="rounded-full mr-2" src="https://placehold.co/40x40" />
         <span>
           Posted by:
-          <strong>User1</strong>
+          <strong>{post.user?.username}</strong>
         </span>
         <span className="ml-4">{post.createdAt}</span>
       </div>

@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, HideField, ObjectType } from '@nestjs/graphql';
 import { UserInterface } from '../schema/user.interface';
 import { Types } from 'mongoose';
 
@@ -13,6 +13,6 @@ export class UserModel implements UserInterface {
   @Field()
   username: string;
 
-  @Field()
+  @HideField()
   password: string;
 }
