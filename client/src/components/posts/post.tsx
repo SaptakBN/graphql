@@ -1,4 +1,5 @@
 import { UserPostModel } from "@/GraphQL/generated/graphql";
+import { Ellipsis, ThumbsUp, ThumbsDown, MessageSquare } from "lucide-react";
 
 export function Post({ post }: { post: UserPostModel }) {
   return (
@@ -6,8 +7,9 @@ export function Post({ post }: { post: UserPostModel }) {
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-xl font-bold">{post.title}</h2>
         <div className="flex space-x-2">
-          <button className="text-blue-500 hover:underline">Edit</button>
-          <button className="text-red-500 hover:underline">Delete</button>
+          <button className="text-gray-500 hover:bg-gray-100 p-2 rounded-full cursor-pointer">
+            <Ellipsis />
+          </button>
         </div>
       </div>
       <div className="flex items-center text-gray-600 text-sm mb-2">
@@ -19,19 +21,19 @@ export function Post({ post }: { post: UserPostModel }) {
       </div>
       <p className="text-gray-700 mb-4">{post.content}</p>
       <div className="flex justify-between items-center">
-        <div className="flex space-x-4">
-          <button className="flex items-center text-gray-600 hover:text-blue-500">
-            <i className="fas fa-thumbs-up mr-1"></i>
+        <div className="flex ">
+          <button className="flex items-center text-gray-600 hover:text-green-700  bg-green-100 rounded-s-full py-2 px-4">
+            <ThumbsUp className="mr-1" size="1.2em" />
             <span>{post.likes}</span>
           </button>
-          <button className="flex items-center text-gray-600 hover:text-red-500">
-            <i className="fas fa-thumbs-down mr-1"></i>
+          <button className="flex items-center text-gray-600 hover:text-red-500 bg-red-100 rounded-e-full py-2 px-4">
             <span>{post.dislikes}</span>
+            <ThumbsDown className="ml-1" size="1.2em" />
           </button>
         </div>
         <button className="flex items-center text-gray-600 hover:text-green-500" onClick={() => {}}>
-          <i className="fas fa-comments mr-1"></i>
-          <span>Comments</span>
+          <MessageSquare className="mr-1" />
+          <span>0</span>
         </button>
       </div>
       <div className="mt-4 hidden" id="comments1">

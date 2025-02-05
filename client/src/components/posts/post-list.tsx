@@ -14,8 +14,8 @@ export function PostList() {
       <HomeInputs refetch={refetch} />
       {loading && <Loader />}
       <div className="space-y-4">
-        {data.posts.map((post: UserPostModel) => (
-          <Post post={post} />
+        {data.posts.map((post: UserPostModel, i: number) => (
+          <Post post={post} key={i} />
         ))}
       </div>
     </main>
