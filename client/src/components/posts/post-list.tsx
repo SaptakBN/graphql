@@ -1,13 +1,23 @@
 import { UserPostModel, PostsDocument, PostsQuery, PostsQueryVariables } from "@/GraphQL/generated/graphql";
-import { Loader, Post } from "@/components";
+import { HomeInputs, Loader, Post } from "@/components";
 import { useQuery } from "@apollo/client";
 
 export function PostList() {
-  const { data, error, loading } = useQuery<PostsQuery, PostsQueryVariables>(PostsDocument);
+  const { data, error, loading, refetch } = useQuery<PostsQuery, PostsQueryVariables>(PostsDocument);
 
   if (loading) return <Loader />;
 
   if (error || !data) return <>{error?.message}</>;
 
-  return data.posts.map((post: UserPostModel) => <Post post={post} />);
+  return (
+    <main className="container mx-auto mt-6 px-4">
+      <HomeInputs refetch={refetch} />
+      {loading && <Loader />}
+      <div className="space-y-4">
+        {data.posts.map((post: UserPostModel) => (
+          <Post post={post} />
+        ))}
+      </div>
+    </main>
+  );
 }
