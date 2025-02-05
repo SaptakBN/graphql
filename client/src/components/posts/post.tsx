@@ -1,5 +1,6 @@
 import { UserPostModel } from "@/GraphQL/generated/graphql";
 import { Ellipsis, ThumbsUp, ThumbsDown, MessageSquare } from "lucide-react";
+import { format } from "@/utils/date-format";
 
 export function Post({ post }: { post: UserPostModel }) {
   return (
@@ -17,18 +18,18 @@ export function Post({ post }: { post: UserPostModel }) {
         <span>
           Posted by: <strong>{post.user?.username}</strong>
         </span>
-        <span className="ml-4">{post.createdAt}</span>
+        <span className="ml-4">{format(post.createdAt)}</span>
       </div>
       <p className="text-gray-700 mb-4">{post.content}</p>
       <div className="flex justify-between items-center">
         <div className="flex ">
           <button className="flex items-center text-gray-600 hover:text-green-700  bg-green-100 rounded-s-full py-2 px-4">
-            <ThumbsUp className="mr-1" size="1.2em" />
+            <ThumbsUp className="mr-2" size="1.2em" />
             <span>{post.likes}</span>
           </button>
           <button className="flex items-center text-gray-600 hover:text-red-500 bg-red-100 rounded-e-full py-2 px-4">
             <span>{post.dislikes}</span>
-            <ThumbsDown className="ml-1" size="1.2em" />
+            <ThumbsDown className="ml-2" size="1.2em" />
           </button>
         </div>
         <button className="flex items-center text-gray-600 hover:text-green-500" onClick={() => {}}>
