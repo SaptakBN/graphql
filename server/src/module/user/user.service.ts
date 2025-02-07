@@ -31,4 +31,15 @@ export class UserService {
   async create(user: User) {
     return this.userModel.create(user);
   }
+
+  async validateUser(id: Types.ObjectId) {
+    const foundUser = await this.userModel.findById(id);
+
+    if (!foundUser) {
+      throw new GraphQLError('Unauthorized', {
+        extensions: { code: 401, type: 'Unauthorized' },
+      });
+    }
+    return foundUser;
+  }
 }

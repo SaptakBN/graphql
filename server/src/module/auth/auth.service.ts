@@ -77,7 +77,7 @@ export class AuthService {
   }
 
   async validateUserById(id: Types.ObjectId): Promise<User> {
-    const user = (await this.userService.findOneById(id)) as UserDocument;
+    const user = (await this.userService.validateUser(id)) as UserDocument;
     return user;
   }
 }

@@ -3,11 +3,17 @@ import { ErrorResponse, onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { GQL_URI } from "@/config";
 import { authMiddleware } from "@/GraphQL/middleware";
+import { store, logout } from "@/redux";
+import { storage } from "@/services";
 
 const errorLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message, locations, path }) => {
-      console.log(`Graphql error: `, message, locations, path);
+      if (message === "Unauthorized") {
+        store.dispatch(logout());
+        storage.clearStorage();
+        console.log(`Graphql error: `, message, locations, path);
+      }
     });
   }
 

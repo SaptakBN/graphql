@@ -6,20 +6,20 @@ export function Post({ post }: { post: UserPostModel }) {
   return (
     <div className="bg-white p-4 rounded shadow-md">
       <div className="flex justify-between items-center mb-2">
-        <h2 className="text-xl font-bold">{post.title}</h2>
+        <div className="flex items-center text-gray-600 text-sm mb-2">
+          <img alt="Avatar of User1" className="rounded-full mr-2" src="https://placehold.co/40x40" />
+          <span>
+            Posted by: <strong>{post.user?.username}</strong>
+          </span>
+          <span className="ml-4">{format(post.createdAt)}</span>
+        </div>
         <div className="flex space-x-2">
           <button className="text-gray-500 hover:bg-gray-100 p-2 rounded-full cursor-pointer">
             <Ellipsis />
           </button>
         </div>
       </div>
-      <div className="flex items-center text-gray-600 text-sm mb-2">
-        <img alt="Avatar of User1" className="rounded-full mr-2" src="https://placehold.co/40x40" />
-        <span>
-          Posted by: <strong>{post.user?.username}</strong>
-        </span>
-        <span className="ml-4">{format(post.createdAt)}</span>
-      </div>
+      <h2 className="text-xl font-bold mb-4">{post.title}</h2>
       <p className="text-gray-700 mb-4">{post.content}</p>
       <div className="flex justify-between items-center">
         <div className="flex ">
