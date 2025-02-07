@@ -7,3 +7,7 @@ export { HomeInputs } from "@/components/home/inputs";
 export { Post } from "@/components/posts/post";
 export { PostList } from "@/components/posts/post-list";
 export { PostForm } from "@/components/forms/post/post-form";
+export { EditMenu } from "@/components/posts/edit-menu";
+export { LikeBtn } from "@/components/posts/like-button";
+export { DislikeBtn } from "@/components/posts/dislike-button";
+export { Comments } from "@/components/comments/comments";
